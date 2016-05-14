@@ -1,24 +1,9 @@
 :host {
   background-color: #eee;
+  border: 1px solid #000;
 }
 
-.terrain {
-  width: 48px;
-  height: 48px;
-}
-
-.terrain-dirt {
-  background-color: sandybrown;
-}
-.terrain-grass {
-  background-color: green;
-}
-.terrain-road {
-  background-color: grey;
-}
-.terrain-rock {
-  background-color: black;
-}
-.terrain-water {
-  background-color: dodgerblue;
+.cell {
+  width: 24px;
+  height: 24px;
 }

@@ -1,20 +1,11 @@
-export enum TileType {
-  Dirt,
-  Road,
-  Grass,
-  Rock,
-  Water
-}
-
 export class Tile {
   id: number;
-  hasFogOfWar: boolean = false;
-  type: TileType;
+  isMine: boolean;
+  isRevealed: boolean = false;
 
-  constructor(id: number, type: TileType, hasFogOfWar: boolean = false) {
+  constructor(id: number, isMine: boolean = false) {
     this.id = id;
-    this.type = type;
-    this.hasFogOfWar = hasFogOfWar;
+    this.isMine = isMine;
   }
 }
 
