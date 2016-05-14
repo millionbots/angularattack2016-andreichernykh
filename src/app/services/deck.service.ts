@@ -1,7 +1,7 @@
 import {Card} from "../models/card";
 
 export class DeckService {
-  generate() {
+  generate(): Card[] {
     // TODO: generate cards randomly
 
     return [
@@ -9,11 +9,11 @@ export class DeckService {
     ];
   }
   
-  _shuffle(collection) {
+  _shuffle(collection: Card[]): void {
     // Fisher–Yates Shuffle
-    let length = collection.length;
-    let temp;
-    let i;
+    let length: number = collection.length;
+    let temp: Card;
+    let i: number;
 
     // While there remain elements to shuffle…
     while (length) {

@@ -8,7 +8,7 @@ export class GameField {
     this.tiles = tiles;
   }
 
-  getRows() {
+  getRows(): Array<Tile[]> {
     let rows: Array<Tile[]> = [];
     for (let i = 0; i < this.tiles.length; i += this.width) {
       rows.push(this.tiles.slice(i, i + this.width));
@@ -16,15 +16,6 @@ export class GameField {
 
     return rows;
   }
-
- // getRow(index: number) {
- //    let row: Tile[] = [];
- //    for (let i = 0; i < this.tiles.length; i++) {
- //      row = this.tiles.slice(i, i + this.width);
- //    }
- //
- //    return rows;
- //  }
 
   findSiblingLeft(tile: Tile) {
 

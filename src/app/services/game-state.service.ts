@@ -7,7 +7,7 @@ import {Hero} from "../models/hero";
 
 @Injectable()
 export class GameStateService {
-  getState() {
+  getState(): GameState {
     let tiles: Tile[] = [];
     for (let i = 0; i < 64; i++) {
       tiles.push(new Tile(i, i % 5));
