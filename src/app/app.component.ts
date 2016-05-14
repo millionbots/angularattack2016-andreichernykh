@@ -20,9 +20,10 @@ export class AppComponent {
   gameField: GameField;
   
   constructor() {
-    this.gameField = new GameField();
+    let tiles: Tile[] = [];
     for (let i = 0; i < 64; i++) {
-      this.gameField.tiles.push(new Tile(i, i % 5));
+      tiles.push(new Tile(i, i % 5));
     }
+    this.gameField = new GameField(tiles);
   }
 }

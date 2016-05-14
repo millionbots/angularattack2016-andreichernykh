@@ -1,2 +1,3 @@
-Game field {{gameField.tiles.length}}
-<tile *ngFor="let tile of gameField.tiles" [tile]="tile"></tile>
+<div *ngFor="let row of gameField.getRows()">
+    <tile *ngFor="let tile of row" [tile]="tile"></tile>
+</div>
