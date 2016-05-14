@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TileComponent} from "../tile/tile.component";
+import {GameField} from "../../models/game-field";
 
 @Component({
   selector: 'game-field',
@@ -10,5 +11,5 @@ import {TileComponent} from "../tile/tile.component";
   ]
 })
 export class GameFieldComponent {
-  
+  @Input() gameField: GameField;
 }

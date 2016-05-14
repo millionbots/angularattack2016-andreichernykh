@@ -7,12 +7,14 @@ export enum TileType {
 }
 
 export class Tile {
+  id: number;
   hasFogOfWar: boolean = false;
   type: TileType;
 
-  constructor(type: TileType, hasFogOfWar: boolean = false) {
-    this.hasFogOfWar = hasFogOfWar;
+  constructor(id: number, type: TileType, hasFogOfWar: boolean = false) {
+    this.id = id;
     this.type = type;
+    this.hasFogOfWar = hasFogOfWar;
   }
 }
 
