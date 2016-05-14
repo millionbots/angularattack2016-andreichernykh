@@ -1,3 +1,5 @@
 <div [ngClass]="getClasses()">
-    <ng-content></ng-content>
+    <div *ngIf="tile.isMine">
+        <icon [type]="'skull'"></icon>
+    </div>
 </div>

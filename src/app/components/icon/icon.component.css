@@ -1,0 +1,10 @@
+.icon { /* Customizes all icons at once */
+  display: inline-block;
+}
+
+/*Skull icon by Icons8 */
+.icons8-Skull { /* Customizes Skull icon */
+  fill: #false;
+  width: 24px;
+  height: 24px;
+}
