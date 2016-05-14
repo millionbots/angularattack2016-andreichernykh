@@ -1,10 +1,11 @@
-import {Component, } from '@angular/core';
+import {Component} from '@angular/core';
 
 import {TileComponent} from "./components/tile/tile.component";
 import {GameFieldComponent} from "./components/game-field/game-field.component";
 import {ControlPanelComponent} from "./components/control-panel/control-panel.component";
-import {GameField} from "./models/game-field";
-import {Tile, TileType} from "./models/tile";
+import {GameStateService} from "./services/game-state.service";
+import {GameState} from "./models/game-state";
+import {HeroStatePanelComponent} from "./components/hero-state-panel/hero-state-panel.component";
 
 @Component({
   selector: 'my-app',
@@ -13,17 +14,15 @@ import {Tile, TileType} from "./models/tile";
   directives: [
     TileComponent,
     GameFieldComponent,
-    ControlPanelComponent
-  ]
+    ControlPanelComponent,
+    HeroStatePanelComponent
+  ],
+  providers: [GameStateService]
 })
 export class AppComponent {
-  gameField: GameField;
+  state: GameState;
   
-  constructor() {
-    let tiles: Tile[] = [];
-    for (let i = 0; i < 64; i++) {
-      tiles.push(new Tile(i, i % 5));
-    }
-    this.gameField = new GameField(tiles);
+  constructor(private gameStateService: GameStateService) {
+    this.state = this.gameStateService.getState();
   }
 }
