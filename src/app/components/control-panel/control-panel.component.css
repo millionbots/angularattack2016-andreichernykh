@@ -9,6 +9,12 @@
   justify-content: center;
   padding: 16px;
 }
-:host .info div {
+:host .info .info-section {
   width: 200px;
+}
+
+:host .info .info-section icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

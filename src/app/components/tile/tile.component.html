@@ -4,7 +4,7 @@
             <icon [type]="'skull'"></icon>
         </div>
         <div *ngIf="!tile.isMine">
-            <div class="threatCounter">{{tile.threatCount > 0 ? tile.threatCount : ''}}</div>
+            <div [ngClass]="getCounterClasses()">{{tile.threatCount > 0 ? tile.threatCount : ''}}</div>
         </div>
     </div>
 </div>

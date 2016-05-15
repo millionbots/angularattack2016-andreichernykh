@@ -1,5 +1,14 @@
+:host {
+
+}
+
 .icon { /* Customizes all icons at once */
   display: inline-block;
+}
+
+.icon-content {
+  margin-top: 3px;
+  margin-left: 8px;
 }
 
 /*Skull icon by Icons8 */
@@ -33,4 +42,16 @@
   fill:#false;
   width: 96px;
   height: 96px;
+}
+/*Stopwatch icon by Icons8 */
+.icons8-Stopwatch { /* Customizes Stopwatch icon */
+  fill:#false;
+  width: 24px;
+  height: 24px;
+}
+/*Gender Neutral User icon by Icons8 */
+.icons8-Gender-Neutral-User { /* Customizes Gender Neutral User icon */
+  fill:#false;
+  width: 24px;
+  height: 24px;
 }

@@ -1,6 +1,6 @@
 <div class="board-title">Score Board</div>
 <div class="board-header">
-    <div>Name</div>
-    <div>Time Spent</div>
+    <icon [type]="'user'"></icon>
+    <icon [type]="'stopwatch'"></icon>
 </div>
 <score-record *ngFor="let record of scores" [record]="record"></score-record>
