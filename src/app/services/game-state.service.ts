@@ -13,7 +13,7 @@ export class GameStateService {
     // 10 9*9
     // 40 16*16
     // 99 30*16
-    this.field = new GameField(9, 9, 10);
+    this.field = new GameField(/*9, 9, 10*/);
     this.state = new GameState(this.field);
   }
   

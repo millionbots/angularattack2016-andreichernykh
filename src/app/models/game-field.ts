@@ -72,11 +72,12 @@ export class GameField {
 
   findSiblingTopByIdx(idx: number): Tile {
     let row: number = this.getTileRowByIdx(idx);
+    let col: number = this.getTileColumnByIdx(idx);
+
     if (row === 0) {
       return null;
     }
 
-    let col: number = this.getTileColumnByIdx(idx);
     return this.tiles[((row - 1) * this.width) + col];
   }
 
@@ -171,7 +172,7 @@ export class GameField {
   }
 
   getTileColumnByIdx(idx: number): number {
-    return idx % this.height;
+    return idx % this.width;
   }
 
   getTileRowByIdx(idx: number): number {
@@ -181,14 +182,18 @@ export class GameField {
   reveal(tile: Tile): void {
     tile.isRevealed = true;
     if (tile.isMine) {
-      alert('defeat'); // TODO: remove
       return;
     }
 
+    this._revealSiblings(tile);
+  }
+
+  private _revealSiblings(tile: Tile) {
     if (tile.threatCount === 0) {
-      let siblings:Tile[] = this.getSiblings(tile);
+      let siblings:Tile[] = this.getSiblings(tile).filter(sibling => !sibling.isRevealed);
       siblings.forEach(sibling => {
         sibling.isRevealed = true;
+        this._revealSiblings(sibling);
       });
     }
   }
@@ -202,6 +207,8 @@ export class GameField {
 
     this._shuffleTiles(this.tiles);
     this._updateThreats();
+
+    // TODO: check if there are tiles with threatsCount > 5 and fix it
   }
 
   private _shuffleTiles(tiles: Tile[]): void {
