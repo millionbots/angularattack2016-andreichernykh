@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px dotted #ccc;
 }
 
 :host div {

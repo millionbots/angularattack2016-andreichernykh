@@ -7,6 +7,8 @@ export class GameField {
   height: number;
   minesCount: number;
 
+  isFirstTurn:boolean = true;
+
   constructor(settings: GameSettings) {
     this.width = settings.width;
     this.height = settings.height;
@@ -178,6 +180,12 @@ export class GameField {
 
   reveal(tile: Tile): void {
     tile.isRevealed = true;
+
+    if (this.isFirstTurn) {
+      this.isFirstTurn = false;
+      this._setupMines(tile);
+    }
+
     if (!tile.isMine) {
       this._revealSiblings(tile);
     }
@@ -197,21 +205,32 @@ export class GameField {
     let count: number = this.height * this.width;
 
     for (let i = 0; i < count; i++) {
-      this.tiles.push(new Tile(i, i < this.minesCount));
+      this.tiles.push(new Tile(i));
     }
-
-    this._shuffleTiles(this.tiles);
-    this._updateThreats();
-
-    // TODO: check if there are tiles with threatsCount > 5 and fix it
-
-    // TODO: set mines after the first reveal
   }
 
-  private _shuffleTiles(tiles: Tile[]): void {
+  private _setupMines(excludeTile:Tile): void {
+    let excludedIdx = this.tiles.indexOf(excludeTile);
+    let idxList:number[] = [];
+    for (let i = 0; i < this.tiles.length; i++) {
+      if (i != excludedIdx) {
+        idxList.push(i);
+      }
+    }
+    // TODO: check if there are tiles with threatsCount > 5 and fix it
+
+    this._shuffleList(idxList);
+    for (let j = 0; j < this.minesCount; j++) {
+      this.tiles[idxList[j]].isMine = true;
+    }
+
+    this._updateThreats();
+  }
+
+  private _shuffleList(list: Array<any>): void {
     // Fisher–Yates Shuffle
-    let length: number = tiles.length;
-    let temp: Tile;
+    let length: number = list.length;
+    let temp: any;
     let i: number;
 
     // While there remain elements to shuffle…
@@ -220,9 +239,9 @@ export class GameField {
       i = Math.floor(Math.random() * length--);
 
       // And swap it with the current element.
-      temp = tiles[length];
-      tiles[length] = tiles[i];
-      tiles[i] = temp;
+      temp = list[length];
+      list[length] = list[i];
+      list[i] = temp;
     }
   }
 

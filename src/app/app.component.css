@@ -28,12 +28,6 @@ main {
 .game-modes .mode {
   border-radius: 4px;
   padding: 4px 12px 8px 8px;
-}
-
-.game-modes .mode icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
 }
 
@@ -47,6 +41,11 @@ main {
   background-color: #adbcd1;
 }
 
+.game-modes .mode icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .game-title {
   font-size: 36px;

@@ -1,9 +1,9 @@
 <main class="noselect">
     <div class="game-title">Good Old Minesweeper</div>
     <div class="game-modes">
-        <div class="mode"><icon [type]="'easy'" class="restart-btn" (click)="startEasyGame()">Easy</icon></div>
-        <div class="mode"><icon [type]="'normal'" class="restart-btn" (click)="startNormalGame()">Normal</icon></div>
-            <div class="mode"><icon [type]="'hard'" class="restart-btn" (click)="startHardGame()">Hard</icon></div>
+        <div class="mode" (click)="startEasyGame()"><icon [type]="'easy'" class="restart-btn">Easy</icon></div>
+        <div class="mode" (click)="startNormalGame()"><icon [type]="'normal'" class="restart-btn">Normal</icon></div>
+        <div class="mode" (click)="startHardGame()"><icon [type]="'hard'" class="restart-btn">Hard</icon></div>
     </div>
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
