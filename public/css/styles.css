@@ -48,5 +48,22 @@ table {
 }
 
 body {
+  font-family: 'Open Sans', sans-serif;
   background: #fff;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.loading-msg {
+  font-size: 48px;
+  margin-left: 16px;
 }
