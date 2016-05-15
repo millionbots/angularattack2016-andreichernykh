@@ -7,7 +7,7 @@
 }
 
 .icon-content {
-  margin-top: 3px;
+  margin-top: 4px;
   margin-left: 8px;
 }
 
@@ -51,6 +51,24 @@
 }
 /*Gender Neutral User icon by Icons8 */
 .icons8-Gender-Neutral-User { /* Customizes Gender Neutral User icon */
+  fill:#false;
+  width: 24px;
+  height: 24px;
+}
+/*Babys Room icon by Icons8 */
+.icons8-Babys-Room { /* Customizes Babys Room icon */
+  fill:#false;
+  width: 24px;
+  height: 24px;
+}
+/*Camo Cream icon by Icons8 */
+.icons8-Camo-Cream { /* Customizes Camo Cream icon */
+  fill:#false;
+  width: 24px;
+  height: 24px;
+}
+/*Human Head icon by Icons8 */
+.icons8-Human-Head { /* Customizes Human Head icon */
   fill:#false;
   width: 24px;
   height: 24px;

@@ -65,8 +65,13 @@ export class GameStateService {
     return this._state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
   }
 
-  startNewGame():void {
-    this._state = new GameState(new GameField(this.gameSettings));
+  startNewGame(mode: string):void {
+    let settings = mode && this.gameModes[mode];
+    if (!settings) {
+      settings = this.gameSettings;
+    }
+    
+    this._state = new GameState(new GameField(settings));
     this._state.isStarted = true;
     this._stateSource.next(this._state);
   }

@@ -11,6 +11,7 @@ import {VictoryScreenComponent} from "./components/victory-screen/victory-screen
 import {ScoreRecord} from "./models/score-record";
 import {ModalComponent} from "./components/modal/modal.component";
 import {DefeatScreenComponent} from "./components/defeat-screen.component/defeat-screen.component";
+import {IconComponent} from "./components/icon/icon.component";
 
 @Component({
   selector: 'my-app',
@@ -23,7 +24,8 @@ import {DefeatScreenComponent} from "./components/defeat-screen.component/defeat
     ScoreBoardComponent,
     VictoryScreenComponent,
     DefeatScreenComponent,
-    ModalComponent
+    ModalComponent,
+    IconComponent
   ],
   providers: [GameStateService]
 })
@@ -47,6 +49,18 @@ export class AppComponent implements OnDestroy {
       console.log('update scores');
       this.scores = scores;
     }));
+  }
+
+  startEasyGame() {
+    this.gameStateService.startNewGame('easy');
+  }
+
+  startNormalGame() {
+    this.gameStateService.startNewGame('normal');
+  }
+
+  startHardGame() {
+    this.gameStateService.startNewGame('hard');
   }
 
   ngOnDestroy() {

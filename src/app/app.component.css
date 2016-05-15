@@ -8,12 +8,6 @@ main {
   align-items: center;
 }
 
-.game-title {
-  font-size: 36px;
-  margin-bottom: 24px;
-  color: #424242;
-}
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -22,4 +16,40 @@ main {
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
+}
+
+.game-modes {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+.game-modes .mode {
+  border-radius: 4px;
+  padding: 4px 12px 8px 8px;
+}
+
+.game-modes .mode icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.game-modes .mode:hover {
+  transition: background-color .2s ease-out;
+  background-color: #ECECEC;
+}
+
+.game-modes .mode:active {
+  transition: background-color .2s ease-out;
+  background-color: #adbcd1;
+}
+
+
+.game-title {
+  font-size: 36px;
+  margin-bottom: 24px;
+  color: #424242;
 }

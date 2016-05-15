@@ -1,7 +1,9 @@
 <main class="noselect">
     <div class="game-title">Good Old Minesweeper</div>
-    <div *ngIf="state.isStarted" class="restart-btn" (click)="startNewGame()">
-        Start a new Game
+    <div class="game-modes">
+        <div class="mode"><icon [type]="'easy'" class="restart-btn" (click)="startEasyGame()">Easy</icon></div>
+        <div class="mode"><icon [type]="'normal'" class="restart-btn" (click)="startNormalGame()">Normal</icon></div>
+            <div class="mode"><icon [type]="'hard'" class="restart-btn" (click)="startHardGame()">Hard</icon></div>
     </div>
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
