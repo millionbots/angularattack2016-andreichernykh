@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+
+import { Subject }    from 'rxjs/Subject';
 
 import {Tile} from "../models/tile";
 import {GameField} from "../models/game-field";
@@ -8,50 +10,57 @@ import {GameSettings} from "../models/game-settings";
 
 @Injectable()
 export class GameStateService {
-  state: GameState;
-  scores: ScoreRecord[] = [];
-  gameModes: GameSettings[] = [];
-  gameSettings: GameSettings;
-  
+  private _state:GameState;
+
+  // Observable string sources
+  private _stateSource = new Subject<GameState>();
+  // Observable string streams
+  state$ = this._stateSource.asObservable();
+
+  scores:ScoreRecord[] = [];
+  gameModes:GameSettings[] = [];
+  gameSettings:GameSettings;
+
   constructor() {
     this.gameModes.push(new GameSettings(9, 9, 10));
     this.gameModes.push(new GameSettings(16, 16, 40));
     this.gameModes.push(new GameSettings(30, 16, 99));
-    
+
     // default
     this.gameSettings = this.gameModes[0];
 
     this.scores.push(new ScoreRecord('John Doe', 42));
   }
-  
-  getState(): GameState {
-    return this.state;
+
+  getState():GameState {
+    return this._state;
   }
 
-  reveal(tile: Tile): void {
-    this.state.gameField.reveal(tile);
+  reveal(tile:Tile):void {
+    this._state.gameField.reveal(tile);
     if (tile.isMine) {
       // TODO: gameover
-      this.state.isDefeat = true;
+      this._state.isDefeat = true;
     } else {
-      this.state.isVictory = this.checkVictory();
+      this._state.isVictory = this.checkVictory();
     }
   }
 
   // TODO: refactoring
   checkVictory() {
-    return this.state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
+    return this._state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
   }
 
-  startNewGame(): void {
-    this.state = new GameState(new GameField(this.gameSettings));
+  startNewGame():void {
+    this._state = new GameState(new GameField(this.gameSettings));
+    this._stateSource.next(this._state);
   }
 
-  resetGame(): void {
-    
+  resetGame():void {
+
   }
 
-  openSettings(): void {
-    
+  openSettings():void {
+
   }
 }
