@@ -8,6 +8,8 @@ import {GameState} from "../models/game-state";
 export class GameStateService {
 
   getState(): GameState {
-    return new GameState(new GameField());
+    // 10 9*9
+    // 40 16*16
+    return new GameState(new GameField(9, 9, 10));
   }
 }

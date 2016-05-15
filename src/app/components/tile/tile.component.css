@@ -1,6 +1,7 @@
 :host {
   background-color: #eee;
   border: 1px solid #000;
+  position: relative;
 }
 
 .cell {
@@ -11,4 +12,10 @@
 .cell:hover {
   background-color: #fff;
   cursor: pointer;
+}
+
+.threatCounter {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

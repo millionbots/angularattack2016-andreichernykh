@@ -2,4 +2,5 @@
     <div *ngIf="tile.isMine">
         <icon [type]="'skull'"></icon>
     </div>
+    <div class="threatCounter">{{tile.threatCount > 0 ? tile.threatCount : ''}}</div>
 </div>
