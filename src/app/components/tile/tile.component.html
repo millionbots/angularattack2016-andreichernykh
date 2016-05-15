@@ -1,8 +1,10 @@
 <div [ngClass]="getClasses()" (click)="onClick()">
-    <!--<div *ngIf="tile.isRevealed">-->
+    <div *ngIf="tile.isRevealed">
         <div *ngIf="tile.isMine">
             <icon [type]="'skull'"></icon>
         </div>
-        <div class="threatCounter">{{tile.threatCount > 0 ? tile.threatCount : ''}}</div>
-    <!--</div>-->
+        <div *ngIf="!tile.isMine">
+            <div class="threatCounter">{{tile.threatCount > 0 ? tile.threatCount : ''}}</div>
+        </div>
+    </div>
 </div>

@@ -1,4 +1,5 @@
 import {Tile} from "./tile";
+import {GameSettings} from "./game-settings";
 
 export class GameField {
   tiles: Tile[] = [];
@@ -6,10 +7,10 @@ export class GameField {
   height: number;
   minesCount: number;
 
-  constructor(width: number = 30, height: number = 16, minesCount: number = 99) {
-    this.width = width;
-    this.height = height;
-    this.minesCount = minesCount;
+  constructor(settings: GameSettings) {
+    this.width = settings.width;
+    this.height = settings.height;
+    this.minesCount = settings.minesCount;
 
     this._generateField();
   }
@@ -90,10 +91,6 @@ export class GameField {
     let col: number = this.getTileColumnByIdx(idx);
     if (col === this.width - 1) {
       return null;
-    }
-
-    if (!this.tiles[((row - 1) * this.width) + col + 1]) {
-      console.log(`${row} : ${col}`);
     }
 
     return this.tiles[((row - 1) * this.width) + col + 1];

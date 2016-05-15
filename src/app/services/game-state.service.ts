@@ -3,22 +3,25 @@ import { Injectable } from '@angular/core';
 import {Tile} from "../models/tile";
 import {GameField} from "../models/game-field";
 import {GameState} from "../models/game-state";
-import {stat} from "fs";
 import {ScoreRecord} from "../models/score-record";
+import {GameSettings} from "../models/game-settings";
 
 @Injectable()
 export class GameStateService {
-  field: GameField;
   state: GameState;
+  scores: ScoreRecord[] = [];
+  gameModes: GameSettings[] = [];
+  gameSettings: GameSettings;
   
   constructor() {
-    // 10 9*9
-    // 40 16*16
-    // 99 30*16
-    this.field = new GameField(9, 9, 10);
-    this.state = new GameState(this.field);
+    this.gameModes.push(new GameSettings(9, 9, 10));
+    this.gameModes.push(new GameSettings(16, 16, 40));
+    this.gameModes.push(new GameSettings(30, 16, 99));
+    
+    // default
+    this.gameSettings = this.gameModes[0];
 
-    this.state.scores.push(new ScoreRecord('John Doe', 42));
+    this.scores.push(new ScoreRecord('John Doe', 42));
   }
   
   getState(): GameState {
@@ -26,21 +29,22 @@ export class GameStateService {
   }
 
   reveal(tile: Tile): void {
+    this.state.gameField.reveal(tile);
     if (tile.isMine) {
       // TODO: gameover
       this.state.isDefeat = true;
     } else {
-      this.field.reveal(tile);
       this.state.isVictory = this.checkVictory();
     }
   }
 
+  // TODO: refactoring
   checkVictory() {
-    return this.field.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
+    return this.state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
   }
 
   startNewGame(): void {
-    
+    this.state = new GameState(new GameField(this.gameSettings));
   }
 
   resetGame(): void {

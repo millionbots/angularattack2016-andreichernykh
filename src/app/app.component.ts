@@ -23,6 +23,7 @@ export class AppComponent {
   state: GameState;
   
   constructor(private gameStateService: GameStateService) {
+    this.gameStateService.startNewGame();
     this.state = this.gameStateService.getState();
   }
 }
