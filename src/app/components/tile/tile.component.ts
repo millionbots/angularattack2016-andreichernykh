@@ -20,7 +20,7 @@ export class TileComponent {
   }
 
   getClasses(): string {
-    let classes: string = ''; // TODO:
+    let classes: string = '';
 
     if (this.tile.isRevealed) {
       classes += ' cell-revealed';

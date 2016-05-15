@@ -209,6 +209,8 @@ export class GameField {
     this._updateThreats();
 
     // TODO: check if there are tiles with threatsCount > 5 and fix it
+
+    // TODO: set mines after the first reveal
   }
 
   private _shuffleTiles(tiles: Tile[]): void {
