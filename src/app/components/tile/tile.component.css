@@ -13,7 +13,7 @@
 }
 
 .cell:hover {
-  background-color: #597edd;
+  background-color: #D6D6D6;
   cursor: pointer;
 }
 
@@ -26,5 +26,5 @@
 }
 
 .threatCounter {
-
+  font-weight: bold;
 }

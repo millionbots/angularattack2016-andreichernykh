@@ -15,3 +15,22 @@
   width: 64px;
   height: 64px;
 }
+
+/*Restart icon by Icons8 */
+.icons8-Restart { /* Customizes Restart icon */
+  fill:#false;
+  width: 64px;
+  height: 64px;
+}
+/*Cool icon by Icons8 */
+.icons8-Cool { /* Customizes Cool icon */
+  fill:#false;
+  width: 96px;
+  height: 96px;
+}
+/*Icons8 Logo icon by Icons8 */
+.icons8-Icons8-Logo { /* Customizes Icons8 Logo icon */
+  fill:#false;
+  width: 96px;
+  height: 96px;
+}

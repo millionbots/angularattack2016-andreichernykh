@@ -12,14 +12,6 @@
   font-size: 12px;
 }
 
-:host input {
-  padding: 8px 16px;
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  margin-bottom: 16px;
-}
-
 :host .btn {
   display: inline-block;
   border-radius: 90px;
@@ -31,5 +23,10 @@
 :host .btn:active {
   transition: background-color .2s ease-out;
   background-color: #adbcd1;
+}
+
+:host .angry-skull svg{
+  width: 96px;
+  height: 96px;
 }
 

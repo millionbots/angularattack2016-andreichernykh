@@ -18,16 +18,17 @@ export class GameStateService {
   private _scoresSource = new Subject<ScoreRecord[]>();
   scores$ = this._scoresSource.asObservable();
 
-  gameModes:GameSettings[] = [];
+  gameModes = {
+    easy: new GameSettings(9, 9, 10),
+    normal: new GameSettings(16, 16, 40),
+    hard: new GameSettings(30, 16, 99)
+  };
+
   gameSettings:GameSettings;
 
   constructor() {
-    this.gameModes.push(new GameSettings(9, 9, 10));
-    this.gameModes.push(new GameSettings(16, 16, 40));
-    this.gameModes.push(new GameSettings(30, 16, 99));
-
     // default
-    this.gameSettings = this.gameModes[0];
+    this.gameSettings = this.gameModes.hard;
 
     this._scores.push(new ScoreRecord('John Doe', 42));
   }
@@ -51,25 +52,23 @@ export class GameStateService {
   reveal(tile:Tile):void {
     this._state.gameField.reveal(tile);
     if (tile.isMine) {
-      // TODO: gameover
       this._state.isDefeat = true;
+      this._state.isStarted = false;
     } else {
       this._state.isVictory = this.checkVictory();
+      this._state.isStarted = !this._state.isVictory;
     }
   }
 
   // TODO: refactoring
-  checkVictory() {
+  checkVictory(): boolean {
     return this._state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
   }
 
   startNewGame():void {
     this._state = new GameState(new GameField(this.gameSettings));
+    this._state.isStarted = true;
     this._stateSource.next(this._state);
-  }
-
-  resetGame():void {
-
   }
 
   openSettings():void {
@@ -83,5 +82,7 @@ export class GameStateService {
 
     this._scores.push(new ScoreRecord(playerName, timeSpent));
     this._scoresSource.next(this.getScores());
+    
+    this.startNewGame();
   }
 }

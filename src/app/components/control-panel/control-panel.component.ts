@@ -23,10 +23,6 @@ export class ControlPanelComponent {
     this.gameStateService.startNewGame();
   }
 
-  resetGame(): void {
-    this.gameStateService.resetGame();
-  }
-
   openSettings(): void {
     this.gameStateService.openSettings();
   }

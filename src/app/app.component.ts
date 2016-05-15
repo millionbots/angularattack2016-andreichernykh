@@ -10,6 +10,7 @@ import {ScoreBoardComponent} from "./components/score-board/score-board.componen
 import {VictoryScreenComponent} from "./components/victory-screen/victory-screen.component";
 import {ScoreRecord} from "./models/score-record";
 import {ModalComponent} from "./components/modal/modal.component";
+import {DefeatScreenComponent} from "./components/defeat-screen.component/defeat-screen.component";
 
 @Component({
   selector: 'my-app',
@@ -21,6 +22,7 @@ import {ModalComponent} from "./components/modal/modal.component";
     ControlPanelComponent,
     ScoreBoardComponent,
     VictoryScreenComponent,
+    DefeatScreenComponent,
     ModalComponent
   ],
   providers: [GameStateService]

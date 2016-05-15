@@ -1,5 +1,8 @@
 <main class="noselect">
     <div class="game-title">Good Old Minesweeper</div>
+    <div *ngIf="state.isStarted" class="restart-btn" (click)="startNewGame()">
+        Start a new Game
+    </div>
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
         [timeSpent]="state.timeSpent"
@@ -9,8 +12,7 @@
         <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
     </modal>
     <modal *ngIf="state.isDefeat">
-        <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
-        Fail!
+        <defeat-screen [secondsCount]="state.timeSpent"></defeat-screen>
     </modal>
     <score-board [scores]="scores"></score-board>
 </main>
