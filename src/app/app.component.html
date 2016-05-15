@@ -3,11 +3,14 @@
         Minesweeper
     </div>
     <game-field [gameField]="state.gameField"></game-field>
-    <control-panel></control-panel>
+    <control-panel
+        [time]="gameTime"
+    ></control-panel>
+    <div *ngIf="state.isVictory">
+        Victory
+    </div>
+    <div *ngIf="state.isDefeat">
+        Fail!
+    </div>
+    <score-board [scores]="state.scores"></score-board>
 </main>
-<div *ngIf="state.isVictory">
-    Victory
-</div>
-<div *ngIf="state.isDefeat">
-    Fail!
-</div>

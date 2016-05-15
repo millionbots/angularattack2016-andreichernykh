@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+
 import {Tile} from "../../models/tile";
 import {IconComponent} from "../icon/icon.component";
 import {GameStateService} from "../../services/game-state.service";

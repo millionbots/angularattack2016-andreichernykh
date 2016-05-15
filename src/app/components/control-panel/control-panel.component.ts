@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+
+import {GameStateService} from "../../services/game-state.service";
 
 @Component({
   selector: 'control-panel',
@@ -8,5 +10,24 @@ import {Component} from '@angular/core';
   ]
 })
 export class ControlPanelComponent {
+  @Input() time: number = 0;
+  @Input() minesCount: number = 0;
+  
+  gameStateService: GameStateService;
 
+  constructor(gameStateService: GameStateService) {
+    this.gameStateService = gameStateService;
+  }
+  
+  startNewGame(): void {
+    this.gameStateService.startNewGame();
+  }
+
+  resetGame(): void {
+    this.gameStateService.resetGame();
+  }
+
+  openSettings(): void {
+    this.gameStateService.openSettings();
+  }
 }

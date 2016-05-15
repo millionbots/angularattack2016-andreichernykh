@@ -27,11 +27,23 @@ export class GameStateService {
       this.state.isDefeat = true;
     } else {
       this.field.reveal(tile);
-      this.state.isVictory = this.checkIsWin();
+      this.state.isVictory = this.checkVictory();
     }
   }
 
-  checkIsWin() {
+  checkVictory() {
     return this.field.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
+  }
+
+  startNewGame(): void {
+    
+  }
+
+  resetGame(): void {
+    
+  }
+
+  openSettings(): void {
+    
   }
 }

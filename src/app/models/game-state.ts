@@ -5,7 +5,7 @@ export class GameState {
   gameField: GameField;
   isVictory: boolean = false;
   isDefeat: boolean = false;
-  timer: number = 0;
+  gameTime: number = 0;
   scores: ScoreRecord[] = [];
 
   constructor(gameField: GameField) {
