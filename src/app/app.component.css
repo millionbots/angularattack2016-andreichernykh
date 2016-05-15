@@ -73,3 +73,13 @@ main {
   color: #008000;
   margin-right: 4px;
 }
+
+footer {
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px dotted #ccc;
+}

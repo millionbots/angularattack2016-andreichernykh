@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 400px;
+  margin-bottom: 50px;
 }
 
 :host .board-title {
