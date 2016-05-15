@@ -1,4 +1,5 @@
 import {Tile} from "./tile";
+import {debug} from "util";
 
 export class GameField {
   private tiles: Tile[] = [];
@@ -32,40 +33,40 @@ export class GameField {
       siblings.push(top);
     }
 
-    // let topRight: Tile = this.findSiblingTopRightByIdx(idx);
-    // if (topRight) {
-    //   siblings.push(topRight);
-    // }
+    let topRight: Tile = this.findSiblingTopRightByIdx(idx);
+    if (topRight) {
+      siblings.push(topRight);
+    }
 
     let right: Tile = this.findSiblingRightByIdx(idx);
     if (right) {
       siblings.push(right);
     }
 
-    // let bottomRight: Tile = this.findSiblingBottomRightByIdx(idx);
-    // if (bottomRight) {
-    //   siblings.push(bottomRight);
-    // }
+    let bottomRight: Tile = this.findSiblingBottomRightByIdx(idx);
+    if (bottomRight) {
+      siblings.push(bottomRight);
+    }
 
     let bottom: Tile = this.findSiblingBottomByIdx(idx);
     if (bottom) {
       siblings.push(bottom);
     }
 
-    // let bottomLeft: Tile = this.findSiblingBottomLeftByIdx(idx);
-    // if (bottomLeft) {
-    //   siblings.push(bottomLeft);
-    // }
+    let bottomLeft: Tile = this.findSiblingBottomLeftByIdx(idx);
+    if (bottomLeft) {
+      siblings.push(bottomLeft);
+    }
 
     let left: Tile = this.findSiblingLeftByIdx(idx);
     if (left) {
       siblings.push(left);
     }
-    //
-    // let topLeft: Tile = this.findSiblingTopLeftByIdx(idx);
-    // if (topLeft) {
-    //   siblings.push(topLeft);
-    // }
+
+    let topLeft: Tile = this.findSiblingTopLeftByIdx(idx);
+    if (topLeft) {
+      siblings.push(topLeft);
+    }
 
     return siblings;
   }
@@ -89,6 +90,10 @@ export class GameField {
     let col: number = this.getTileColumnByIdx(idx);
     if (col === this.width - 1) {
       return null;
+    }
+
+    if (!this.tiles[((row - 1) * this.width) + col + 1]) {
+      console.log(`${row} : ${col}`);
     }
 
     return this.tiles[((row - 1) * this.width) + col + 1];
@@ -171,7 +176,7 @@ export class GameField {
   }
 
   getTileRowByIdx(idx: number): number {
-    return idx / this.width;
+    return Math.floor(idx / this.width);
   }
 
   private _generateField(): void {
