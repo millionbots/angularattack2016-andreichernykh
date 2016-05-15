@@ -1,5 +1,4 @@
 import {Tile} from "./tile";
-import {debug} from "util";
 
 export class GameField {
   private tiles: Tile[] = [];
@@ -177,6 +176,21 @@ export class GameField {
 
   getTileRowByIdx(idx: number): number {
     return Math.floor(idx / this.width);
+  }
+
+  reveal(tile: Tile): void {
+    tile.isRevealed = true;
+    if (tile.isMine) {
+      alert('defeat'); // TODO: remove
+      return;
+    }
+
+    if (tile.threatCount === 0) {
+      let siblings:Tile[] = this.getSiblings(tile);
+      siblings.forEach(sibling => {
+        sibling.isRevealed = true;
+      });
+    }
   }
 
   private _generateField(): void {

@@ -6,10 +6,22 @@ import {GameState} from "../models/game-state";
 
 @Injectable()
 export class GameStateService {
-
-  getState(): GameState {
+  field: GameField;
+  state: GameState;
+  
+  constructor() {
     // 10 9*9
     // 40 16*16
-    return new GameState(new GameField(9, 9, 10));
+    // 99 30*16
+    this.field = new GameField(9, 9, 10);
+    this.state = new GameState(this.field);
+  }
+  
+  getState(): GameState {
+    return this.state;
+  }
+
+  reveal(tile: Tile): void {
+    this.field.reveal(tile);
   }
 }
