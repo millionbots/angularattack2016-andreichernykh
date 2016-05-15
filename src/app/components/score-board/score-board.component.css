@@ -1,3 +1,22 @@
 :host {
   display: block;
+  width: 400px;
+}
+
+:host .board-title {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+:host .board-header {
+  border: 1px dotted #000;
+}
+
+:host .board-header div {
+  display: inline-block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 36px;
 }
