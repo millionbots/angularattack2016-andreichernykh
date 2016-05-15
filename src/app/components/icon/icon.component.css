@@ -8,3 +8,10 @@
   width: 24px;
   height: 24px;
 }
+
+/*Checked icon by Icons8 */
+.icons8-Checked { /* Customizes Checked icon */
+  fill: #false;
+  width: 64px;
+  height: 64px;
+}

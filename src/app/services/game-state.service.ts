@@ -76,7 +76,11 @@ export class GameStateService {
 
   }
 
-  addScoreRecord(playerName: string, timeSpent: number) {
+  addScoreRecord(playerName: string, timeSpent: number): void {
+    if (!playerName) {
+      return;
+    }
+
     this._scores.push(new ScoreRecord(playerName, timeSpent));
     this._scoresSource.next(this.getScores());
   }

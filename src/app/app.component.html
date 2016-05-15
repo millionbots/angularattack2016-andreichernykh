@@ -7,11 +7,12 @@
         [timeSpent]="state.timeSpent"
         [minesCount]="state.gameField.minesCount"
     ></control-panel>
-    <div *ngIf="!state.isVictory">
+    <modal *ngIf="state.isVictory">
         <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
-    </div>
-    <div *ngIf="state.isDefeat">
+    </modal>
+    <modal *ngIf="state.isDefeat">
+        <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
         Fail!
-    </div>
+    </modal>
     <score-board [scores]="scores"></score-board>
 </main>

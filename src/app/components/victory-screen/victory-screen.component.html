@@ -4,6 +4,10 @@
     <div class="message-secondary">And spent just {{secondsCount}} seconds...</div>
 </div>
 <div>
-    <input #playerName (keyup)="onKeyUp($event.keyCode, playerName.value)">
-    <div (click)="onSave(playerName.value)">Save</div>
+    <input #playerName (keyup)="onKeyUp($event.keyCode, playerName.value)" placeholder="Your name ...">
+    <div>
+        <div class="btn" (click)="onSave(playerName.value)">
+            <icon [type]="'checked'"></icon>
+        </div>
+    </div>
 </div>

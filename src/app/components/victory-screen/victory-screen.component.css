@@ -1,0 +1,35 @@
+:host .header {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+:host .message {
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+:host .message-secondary {
+  font-size: 12px;
+}
+
+:host input {
+  padding: 8px 16px;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+:host .btn {
+  display: inline-block;
+  border-radius: 90px;
+  height: 64px;
+  cursor: pointer;
+  transition: background-color .2s ease-out;
+}
+
+:host .btn:active {
+  transition: background-color .2s ease-out;
+  background-color: #8D99AE;
+}
+
