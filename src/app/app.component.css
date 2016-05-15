@@ -52,3 +52,24 @@ main {
   margin-bottom: 24px;
   color: #424242;
 }
+
+.icon8-thx {
+  position: fixed;
+  top: 0;
+  padding: 36px;
+}
+
+.icon8-text {
+  display: flex;
+  align-items: center;
+}
+
+.icon8-text icon {
+  height: 32px;
+}
+
+.icon8-name {
+  font-weight: bold;
+  color: #008000;
+  margin-right: 4px;
+}
