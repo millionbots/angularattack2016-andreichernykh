@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import {Tile} from "../models/tile";
 import {GameField} from "../models/game-field";
 import {GameState} from "../models/game-state";
+import {stat} from "fs";
+import {ScoreRecord} from "../models/score-record";
 
 @Injectable()
 export class GameStateService {
@@ -15,6 +17,8 @@ export class GameStateService {
     // 99 30*16
     this.field = new GameField(9, 9, 10);
     this.state = new GameState(this.field);
+
+    this.state.scores.push(new ScoreRecord('John Doe', 42));
   }
   
   getState(): GameState {

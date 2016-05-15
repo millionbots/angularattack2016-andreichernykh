@@ -5,6 +5,7 @@
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
         [time]="gameTime"
+        [minesCount]="state.gameField.minesCount"
     ></control-panel>
     <div *ngIf="state.isVictory">
         Victory
