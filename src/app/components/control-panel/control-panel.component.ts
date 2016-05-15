@@ -10,7 +10,7 @@ import {GameStateService} from "../../services/game-state.service";
   ]
 })
 export class ControlPanelComponent {
-  @Input() time: number = 0;
+  @Input() timeSpent: number = 0;
   @Input() minesCount: number = 0;
   
   gameStateService: GameStateService;

@@ -7,6 +7,8 @@ import {ControlPanelComponent} from "./components/control-panel/control-panel.co
 import {GameStateService} from "./services/game-state.service";
 import {GameState} from "./models/game-state";
 import {ScoreBoardComponent} from "./components/score-board/score-board.component";
+import {VictoryScreenComponent} from "./components/victory-screen/victory-screen.component";
+import {ScoreRecord} from "./models/score-record";
 
 @Component({
   selector: 'my-app',
@@ -16,28 +18,35 @@ import {ScoreBoardComponent} from "./components/score-board/score-board.componen
     TileComponent,
     GameFieldComponent,
     ControlPanelComponent,
-    ScoreBoardComponent
+    ScoreBoardComponent,
+    VictoryScreenComponent
   ],
   providers: [GameStateService]
 })
 export class AppComponent implements OnDestroy {
   state:GameState;
+  scores:ScoreRecord[] = [];
 
-  subscription:Subscription;
+  private _subscriptions:Subscription[] = [];
 
   constructor(private gameStateService:GameStateService) {
     this.gameStateService.startNewGame();
     this.state = this.gameStateService.getState();
+    this.scores = this.gameStateService.getScores();
 
-    this.subscription = this.gameStateService.state$.subscribe(state => {
+    this._subscriptions.push(this.gameStateService.state$.subscribe(state => {
       console.log('update state');
       this.state = state;
-    });
+    }));
+
+    this._subscriptions.push(this.gameStateService.scores$.subscribe(scores => {
+      console.log('update scores');
+      this.scores = scores;
+    }));
   }
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
+    this._subscriptions.forEach(subscription => subscription.unsubscribe());
   }
-
 }

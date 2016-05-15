@@ -4,14 +4,14 @@
     </div>
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
-        [time]="gameTime"
+        [timeSpent]="state.timeSpent"
         [minesCount]="state.gameField.minesCount"
     ></control-panel>
-    <div *ngIf="state.isVictory">
-        Victory
+    <div *ngIf="!state.isVictory">
+        <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
     </div>
     <div *ngIf="state.isDefeat">
         Fail!
     </div>
-    <score-board [scores]="state.scores"></score-board>
+    <score-board [scores]="scores"></score-board>
 </main>

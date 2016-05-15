@@ -1,0 +1,9 @@
+<div class="header">Victory!</div>
+<div class="message">
+    <div class="message-main">Congratulations! You survived!</div>
+    <div class="message-secondary">And spent just {{secondsCount}} seconds...</div>
+</div>
+<div>
+    <input #playerName (keyup)="onKeyUp($event.keyCode, playerName.value)">
+    <div (click)="onSave(playerName.value)">Save</div>
+</div>

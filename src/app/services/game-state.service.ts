@@ -11,13 +11,13 @@ import {GameSettings} from "../models/game-settings";
 @Injectable()
 export class GameStateService {
   private _state:GameState;
-
-  // Observable string sources
   private _stateSource = new Subject<GameState>();
-  // Observable string streams
   state$ = this._stateSource.asObservable();
 
-  scores:ScoreRecord[] = [];
+  private _scores:ScoreRecord[] = [];
+  private _scoresSource = new Subject<ScoreRecord[]>();
+  scores$ = this._scoresSource.asObservable();
+
   gameModes:GameSettings[] = [];
   gameSettings:GameSettings;
 
@@ -29,11 +29,23 @@ export class GameStateService {
     // default
     this.gameSettings = this.gameModes[0];
 
-    this.scores.push(new ScoreRecord('John Doe', 42));
+    this._scores.push(new ScoreRecord('John Doe', 42));
   }
 
   getState():GameState {
     return this._state;
+  }
+
+  getScores():ScoreRecord[] {
+    return this._scores.slice().sort((a: ScoreRecord, b: ScoreRecord) => {
+      if (a.time > b.time) {
+        return 1;
+      }
+      if (a.time < b.time) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
   reveal(tile:Tile):void {
@@ -62,5 +74,10 @@ export class GameStateService {
 
   openSettings():void {
 
+  }
+
+  addScoreRecord(playerName: string, timeSpent: number) {
+    this._scores.push(new ScoreRecord(playerName, timeSpent));
+    this._scoresSource.next(this.getScores());
   }
 }
