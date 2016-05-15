@@ -1,4 +1,4 @@
-import {Component, Input, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, Input, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
 
 import {GameStateService} from "../../services/game-state.service";
 import {IconComponent} from "../icon/icon.component";
@@ -11,14 +11,19 @@ import {IconComponent} from "../icon/icon.component";
     IconComponent
   ]
 })
-export class VictoryScreenComponent implements AfterViewInit {
+export class VictoryScreenComponent implements AfterViewInit, OnInit {
   @Input() secondsCount: number;
+  @Input() startTime: number; // TODO: remove
   @ViewChild('playerName') inputRef: ElementRef;
 
   gameStateService: GameStateService;
 
   constructor(gameStateService: GameStateService) {
     this.gameStateService = gameStateService;
+  }
+  
+  ngOnInit() {
+    this.secondsCount = Math.floor((Date.now() - this.startTime) / 1000);
   }
 
   ngAfterViewInit() {

@@ -41,12 +41,10 @@ export class AppComponent implements OnDestroy {
     this.scores = this.gameStateService.getScores();
 
     this._subscriptions.push(this.gameStateService.state$.subscribe(state => {
-      console.log('update state');
       this.state = state;
     }));
 
     this._subscriptions.push(this.gameStateService.scores$.subscribe(scores => {
-      console.log('update scores');
       this.scores = scores;
     }));
   }

@@ -7,14 +7,14 @@
     </div>
     <game-field [gameField]="state.gameField"></game-field>
     <control-panel
-        [timeSpent]="state.timeSpent"
+        [startTime]="state.startTime"
         [minesCount]="state.gameField.minesCount"
     ></control-panel>
     <modal *ngIf="state.isVictory">
-        <victory-screen [secondsCount]="state.timeSpent"></victory-screen>
+        <victory-screen [startTime]="state.startTime"></victory-screen>
     </modal>
     <modal *ngIf="state.isDefeat">
-        <defeat-screen [secondsCount]="state.timeSpent"></defeat-screen>
+        <defeat-screen></defeat-screen>
     </modal>
     <score-board [scores]="scores"></score-board>
 </main>

@@ -1,5 +1,5 @@
 <div [ngClass]="getClasses()" (click)="onClick()">
-    <div *ngIf="tile.isRevealed">
+    <div *ngIf="!tile.isRevealed">
         <div *ngIf="tile.isMine">
             <icon [type]="'skull'"></icon>
         </div>

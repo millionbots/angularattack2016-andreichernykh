@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 
-import { Subject }    from 'rxjs/Subject';
+import {Subject}    from 'rxjs/Subject';
+import {Observable} from 'rxjs/Rx';
+import {Subscription} from 'rxjs/Subscription';
 
 import {Tile} from "../models/tile";
 import {GameField} from "../models/game-field";
@@ -18,6 +20,9 @@ export class GameStateService {
   private _scoresSource = new Subject<ScoreRecord[]>();
   scores$ = this._scoresSource.asObservable();
 
+  private _timer:Observable<number>;
+  private _timerSubscription:Subscription;
+
   gameModes = {
     easy: new GameSettings(9, 9, 10),
     normal: new GameSettings(16, 16, 40),
@@ -28,7 +33,7 @@ export class GameStateService {
 
   constructor() {
     // default
-    this.gameSettings = this.gameModes.hard;
+    this.gameSettings = this.gameModes.easy;
 
     this._scores.push(new ScoreRecord('John Doe', 42));
   }
@@ -38,7 +43,7 @@ export class GameStateService {
   }
 
   getScores():ScoreRecord[] {
-    return this._scores.slice().sort((a: ScoreRecord, b: ScoreRecord) => {
+    return this._scores.slice().sort((a:ScoreRecord, b:ScoreRecord) => {
       if (a.time > b.time) {
         return 1;
       }
@@ -53,41 +58,45 @@ export class GameStateService {
     this._state.gameField.reveal(tile);
     if (tile.isMine) {
       this._state.isDefeat = true;
-      this._state.isStarted = false;
     } else {
       this._state.isVictory = this.checkVictory();
-      this._state.isStarted = !this._state.isVictory;
     }
   }
 
   // TODO: refactoring
-  checkVictory(): boolean {
+  checkVictory():boolean {
     return this._state.gameField.tiles.filter(tile => !tile.isRevealed && !tile.isMine).length === 0;
   }
 
-  startNewGame(mode: string):void {
-    let settings = mode && this.gameModes[mode];
-    if (!settings) {
+  startNewGame(mode:string = ''):void {
+    let settings:GameSettings = mode && this.gameModes[mode];
+    if (settings) {
+      this.gameSettings = settings;
+    } else {
       settings = this.gameSettings;
     }
-    
+
+    if (this._timerSubscription) {
+      this._timerSubscription.unsubscribe();
+    }
+
+    // TODO: it causes rerender
+    // this._timer = Observable.timer(0,1000);
+    // this._timerSubscription = this._timer.subscribe(t => this._state.timeSpent = t);
+
     this._state = new GameState(new GameField(settings));
-    this._state.isStarted = true;
+    this._state.startTime = Date.now();
     this._stateSource.next(this._state);
   }
 
-  openSettings():void {
-
-  }
-
-  addScoreRecord(playerName: string, timeSpent: number): void {
+  addScoreRecord(playerName:string, timeSpent:number):void {
     if (!playerName) {
       return;
     }
 
     this._scores.push(new ScoreRecord(playerName, timeSpent));
     this._scoresSource.next(this.getScores());
-    
+
     this.startNewGame();
   }
 }

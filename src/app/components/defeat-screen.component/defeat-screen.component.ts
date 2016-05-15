@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {GameStateService} from "../../services/game-state.service";
 import {IconComponent} from "../icon/icon.component";
@@ -12,8 +12,6 @@ import {IconComponent} from "../icon/icon.component";
   ]
 })
 export class DefeatScreenComponent {
-  @Input() secondsCount: number;
-
   gameStateService: GameStateService;
 
   constructor(gameStateService: GameStateService) {
