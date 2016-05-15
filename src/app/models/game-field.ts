@@ -1,10 +1,10 @@
 import {Tile} from "./tile";
 
 export class GameField {
-  private tiles: Tile[] = [];
-  private width: number;
-  private height: number;
-  private minesCount: number;
+  tiles: Tile[] = [];
+  width: number;
+  height: number;
+  minesCount: number;
 
   constructor(width: number = 30, height: number = 16, minesCount: number = 99) {
     this.width = width;
@@ -181,11 +181,9 @@ export class GameField {
 
   reveal(tile: Tile): void {
     tile.isRevealed = true;
-    if (tile.isMine) {
-      return;
+    if (!tile.isMine) {
+      this._revealSiblings(tile);
     }
-
-    this._revealSiblings(tile);
   }
 
   private _revealSiblings(tile: Tile) {
